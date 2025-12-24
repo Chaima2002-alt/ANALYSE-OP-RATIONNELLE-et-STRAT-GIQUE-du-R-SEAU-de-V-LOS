@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Capteur - IoT Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a1d20;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+
+        /* Carte de formulaire */
+        .card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            padding: 2rem;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+            background: white;
+        }
+
+        /* Style des labels et inputs */
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-right: none;
+            color: #0d6efd;
+        }
+
+        .form-control, .form-select {
+            border-left: none;
+            padding: 0.75rem;
+            border-radius: 0 10px 10px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            font-weight: 500;
+        }
+
+        /* Harmonisation du radius pour le groupe complet */
+        .input-group > :first-child {
+            border-radius: 10px 0 0 10px !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #fff;
+            box-shadow: none;
+            border-color: #0d6efd;
+        }
+
+        /* Boutons */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
+            border: none;
+            flex-grow: 2;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(25, 135, 84, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #f0f2f5;
+            color: #6c757d;
+            border: none;
+            flex-grow: 1;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e6ea;
+            color: #212529;
+        }
+
+        /* Animation au focus */
+        .input-group:focus-within .input-group-text {
+            border-color: #0d6efd;
+            background-color: #e7f1ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-white">
+                <h2>
+                    <i th:class="${device.id == null} ? 'bi bi-plus-circle me-2' : 'bi bi-pencil-square me-2'"></i>
+                    <span th:text="${device.id == null} ? 'Nouveau Capteur' : 'Modifier le Capteur'"></span>
+                </h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/api/devices/save}" th:object="${device}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+
+                    <div class="mb-4">
+                        <label class="form-label">Nom du Capteur</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                            <input type="text" th:field="*{name}" class="form-control" placeholder="ex: Capteur Salon" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label">Type de donnée</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-activity"></i></span>
+                                <input type="text" th:field="*{type}" class="form-control" placeholder="TEMP, HUM..." />
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label">Emplacement</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                                <input type="text" th:field="*{location}" class="form-control" placeholder="Cuisine..." />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Statut du périphérique</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-power"></i></span>
+                            <select th:field="*{status}" class="form-select">
+                                <option value="ON">En ligne (ON)</option>
+                                <option value="OFF">Hors ligne (OFF)</option>
+                                <option value="MAINTENANCE">Maintenance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-5">
+                        <a th:href="@{/api/devices/index}" class="btn btn-secondary">
+                            Annuler
+                        </a>
+                        <button type="submit" class="btn btn-success shadow-sm">
+                            <i class="bi bi-check-lg me-2"></i>Enregistrer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

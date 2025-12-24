@@ -1,0 +1,17 @@
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\config\SecurityConfig.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\repository\IoTDeviceRepository.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\repository\DeviceRepository.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\controller\AuthController.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\repository\TelemetryRepository.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\model\IoTDevice.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\service\CustomUserDetailsService.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\IotMiniProjetApplication.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\controller\web\DashboardController.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\config\DataSeeder.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\model\Telemetry.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\controller\api\DeviceRestController.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\service\UserService.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\controller\api\DeviceController.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\repository\UserRepository.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\service\IoTService.java
+C:\Users\21699\Downloads\iot-mini-projet\iot-mini-projet\src\main\java\com\example\iot\model\User.java
